@@ -34,7 +34,7 @@ export default function Dashboard() {
   // }
 
   return (
-    <>
+    <div className='bg-white'>
       {/* <input type='text' value={query} onChange={handleSearch}></input> */}
       <PlaylistCards></PlaylistCards>
       {/* {books.map((book, index) => {
@@ -49,6 +49,6 @@ export default function Dashboard() {
       })}
       <div>{loading && 'Loading...'}</div>
       <div>{error && 'Error'}</div> */}
-    </>
+    </div>
   );
 }
