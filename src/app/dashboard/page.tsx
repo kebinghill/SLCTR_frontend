@@ -3,6 +3,7 @@
 import useSearch from '../hooks/useSearch';
 import { useState, useRef, useCallback } from 'react';
 import PlaylistCards from './PlaylistCards';
+import Header from './Header';
 
 export default function Dashboard() {
   // const [query, setQuery] = useState('');
@@ -36,6 +37,7 @@ export default function Dashboard() {
   return (
     <div className='bg-white'>
       {/* <input type='text' value={query} onChange={handleSearch}></input> */}
+      <Header />
       <PlaylistCards></PlaylistCards>
       {/* {books.map((book, index) => {
         if (books.length === index + 1) {
