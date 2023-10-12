@@ -3,7 +3,7 @@ import PlaylistButtons from './PlaylistButtons';
 
 export default function PlaylistCard() {
   return (
-    <div className='flex flex-col justify-between min-w-[375px] min-h-[375px] bg-white m-[25px]'>
+    <div className='flex flex-col justify-around min-w-[375px] min-h-[375px] bg-white mx-[30px] mb-[18px]'>
       <PlaylistImage />
       <PlaylistButtons />
     </div>

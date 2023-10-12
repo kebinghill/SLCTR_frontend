@@ -4,9 +4,9 @@ export default function PlaylistImage() {
   return (
     <div>
       <Image
-        src='/no_image.svg'
-        width={500}
-        height={500}
+        src='/playlist_cover.png'
+        width={600}
+        height={600}
         alt='No Image Found'
       />
     </div>
