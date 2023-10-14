@@ -1,56 +1,26 @@
 'use client';
 
-import useSearch from '../hooks/useSearch';
-import { useState, useRef, useCallback } from 'react';
 import PlaylistCards from './PlaylistCards';
 import Header from './Header';
+import { useCookies } from 'next-client-cookies';
 
 export default function Dashboard() {
-  // const [query, setQuery] = useState('');
-  // const [pageNumber, setPageNumber] = useState(1);
+  const cookies = useCookies();
 
-  // const { books, hasMore, loading, error } = useSearch(query, pageNumber);
-
-  // const observer = useRef();
-  // const lastBookElementRef = useCallback(
-  //   (node: any) => {
-  //     if (loading) return;
-  //     if (observer.current) {
-  //       observer.current.disconnect();
-  //     }
-  //     observer.current = new IntersectionObserver((entries) => {
-  //       if (entries[0].isIntersecting && hasMore) {
-  //         setPageNumber((prevPageNumber) => prevPageNumber + 1);
-  //       }
-  //     });
-  //     if (node) observer.current.observe(node);
-  //   },
-  //   [loading, hasMore]
-  // );
-
-  // function handleSearch(event: any) {
-  //   console.log(event);
-  //   setQuery(event.target.value);
-  //   setPageNumber(1);
-  // }
+  const handleClick = async () => {
+    const token = cookies.get('token');
+    await fetch('http://localhost:3001/auth/test', {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+  };
 
   return (
     <div className='bg-white'>
-      {/* <input type='text' value={query} onChange={handleSearch}></input> */}
+      <button className='bg-black' onClick={handleClick}>
+        RESTRICTED ROUTE
+      </button>
       <Header />
       <PlaylistCards></PlaylistCards>
-      {/* {books.map((book, index) => {
-        if (books.length === index + 1) {
-          return (
-            <div ref={lastBookElementRef} key={book}>
-              {book}
-            </div>
-          );
-        }
-        return <div key={book}>{book}</div>;
-      })}
-      <div>{loading && 'Loading...'}</div>
-      <div>{error && 'Error'}</div> */}
     </div>
   );
 }
