@@ -8,10 +8,25 @@ export default function Dashboard() {
   const cookies = useCookies();
 
   const handleClick = async () => {
-    const token = cookies.get('token');
-    await fetch('http://localhost:3001/auth/test', {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    try {
+      const token = cookies.get('sp-acc-token');
+      const featuredPlaylists = await fetch(
+        'http://localhost:3001/spotify/featured-playlists',
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+        .then((data) => {
+          data.json();
+        })
+        .then((jsonData) => {
+          console.log(jsonData);
+        });
+
+      console.log(featuredPlaylists);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
