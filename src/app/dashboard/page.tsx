@@ -1,41 +1,26 @@
-'use client';
-
 import PlaylistCards from './PlaylistCards';
 import Header from './Header';
-import { useCookies } from 'next-client-cookies';
+// import { useCookies } from 'next-client-cookies';
+// import { useSession } from 'next-auth/react';
+import { redirect } from 'next/navigation';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '../api/auth/[...nextauth]/route';
 
-export default function Dashboard() {
-  const cookies = useCookies();
+export default async function Dashboard() {
+  // const cookies = useCookies();
+  // const { data: session } = useSession();
+  const session = await getServerSession(authOptions);
 
-  const handleClick = async () => {
-    try {
-      const token = cookies.get('sp-acc-token');
-      const featuredPlaylists = await fetch(
-        'http://localhost:3001/spotify/featured-playlists',
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      )
-        .then((data) => {
-          data.json();
-        })
-        .then((jsonData) => {
-          console.log(jsonData);
-        });
+  console.log('SESSION IN DASHBOARD PAGE', session);
 
-      console.log(featuredPlaylists);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  return (
-    <div className='bg-white'>
-      <button className='bg-black' onClick={handleClick}>
-        RESTRICTED ROUTE
-      </button>
-      <Header />
-      <PlaylistCards></PlaylistCards>
-    </div>
-  );
+  if (session) {
+    return (
+      <div className='bg-white'>
+        <Header />
+        <PlaylistCards></PlaylistCards>
+      </div>
+    );
+  } else {
+    return redirect('/login');
+  }
 }
