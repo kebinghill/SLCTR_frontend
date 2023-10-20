@@ -1,7 +1,7 @@
 import { getServerSession } from 'next-auth/next';
 import { authOptions } from './auth/[...nextauth]/route';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { Session } from '../types/session.type';
+import { Session } from '../types/next-auth';
 
 const getFeaturedPlaylists = async (
   req: NextApiRequest,

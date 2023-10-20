@@ -9,7 +9,7 @@ export default function PlaylistImage() {
   return (
     <div>
       <Image
-        src={session.data?.user.image}
+        src='/public/no_image.svg'
         width={600}
         height={600}
         alt='No Image Found'

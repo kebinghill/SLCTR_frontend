@@ -1,9 +1,43 @@
-import { Session } from '@/app/types/session.type';
 import NextAuth, { NextAuthOptions } from 'next-auth';
+import { JWT } from 'next-auth/jwt';
 import SpotifyProvider from 'next-auth/providers/spotify';
+import axios from 'axios';
 
 const scopes =
   'scope=user-read-email playlist-modify-public playlist-modify-private';
+
+const SPOTIFY_REFRESH_TOKEN_URL = 'https://accounts.spotify.com/api/token';
+
+async function refreshAccessToken(token: JWT): Promise<JWT> {
+  try {
+    const basicAuth = Buffer.from(
+      `${process.env.CLIENT_ID}:${process.env.CLIENT_SECRET}`
+    ).toString('base64');
+    const { data } = await axios.post(
+      SPOTIFY_REFRESH_TOKEN_URL,
+      {
+        grant_type: 'refresh_token',
+        refresh_token: token.refreshToken,
+      },
+      {
+        headers: {
+          Authorization: `Basic ${basicAuth}`,
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      }
+    );
+    return {
+      ...token,
+      accessToken: data.access_token,
+      accessTokenExpires: Date.now() + data.expires_in * 1000,
+    };
+  } catch (error) {
+    return {
+      ...token,
+      error: 'RefreshAccessTokenError',
+    };
+  }
+}
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -22,15 +56,28 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async jwt({ token, account }) {
-      if (account) {
-        token.accessToken = account.access_token;
+    async jwt({ token, account, user }) {
+      if (account && user) {
+        return {
+          accessToken: account.access_token,
+          refreshToken: account.refresh_token,
+          accessTokenExpires: account.expires_at * 1000,
+          user,
+        };
+        // token.accessToken = account.access_token;
       }
-      return token;
+      if (token.accessTokenExpires && Date.now() < token.accessTokenExpires) {
+        return token;
+      }
+
+      const newToken = await refreshAccessToken(token);
+      return newToken;
+      // return token;
     },
-    async session({ session, token }: { session: Session; token: any }) {
-      // ts doesn't like this because accessToken is not defined in the Session type
+    async session({ session, token }) {
       session.accessToken = token.accessToken;
+      session.error = token.error;
+      session.user = token.user;
       return session;
     },
   },
