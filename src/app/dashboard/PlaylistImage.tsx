@@ -1,15 +1,12 @@
 'use client';
 
 import Image from 'next/image';
-import { useSession } from 'next-auth/react';
 
-export default function PlaylistImage() {
-  const session = useSession();
-  console.log('SESSION IN PLAYLIST IMAGE CLIENT COMPONENT', session);
+export default function PlaylistImage(image) {
   return (
     <div>
       <Image
-        src='/public/no_image.svg'
+        src={image ? image.image : 'no_image.png'}
         width={600}
         height={600}
         alt='No Image Found'

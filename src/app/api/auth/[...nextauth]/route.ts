@@ -34,7 +34,7 @@ async function refreshAccessToken(token: JWT): Promise<JWT> {
   } catch (error) {
     return {
       ...token,
-      error: 'RefreshAccessTokenError',
+      error: `RefreshAccessTokenError ${error}`,
     };
   }
 }
@@ -64,15 +64,12 @@ export const authOptions: NextAuthOptions = {
           accessTokenExpires: account.expires_at * 1000,
           user,
         };
-        // token.accessToken = account.access_token;
       }
       if (token.accessTokenExpires && Date.now() < token.accessTokenExpires) {
         return token;
       }
-
       const newToken = await refreshAccessToken(token);
       return newToken;
-      // return token;
     },
     async session({ session, token }) {
       session.accessToken = token.accessToken;
