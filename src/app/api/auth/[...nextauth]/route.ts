@@ -1,3 +1,4 @@
+import { Session } from '@/app/types/session.type';
 import NextAuth, { NextAuthOptions } from 'next-auth';
 import SpotifyProvider from 'next-auth/providers/spotify';
 
@@ -27,7 +28,8 @@ export const authOptions: NextAuthOptions = {
       }
       return token;
     },
-    async session({ session, token }) {
+    async session({ session, token }: { session: Session; token: any }) {
+      // ts doesn't like this because accessToken is not defined in the Session type
       session.accessToken = token.accessToken;
       return session;
     },
