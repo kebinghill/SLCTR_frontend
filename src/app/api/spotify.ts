@@ -24,6 +24,6 @@ export const getFeaturedPlaylists = async () => {
       }
     }
   } catch (error) {
-    console.log(error);
+    throw new Error(`(getFeaturedPlaylists) error: ${error}`);
   }
 };
