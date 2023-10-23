@@ -13,7 +13,7 @@ export default async function Dashboard() {
 
   console.log('SESSION IN DASHBOARD PAGE', session);
 
-  if (session) {
+  if (session && !session.error) {
     return (
       <div className='bg-white'>
         <Header />
