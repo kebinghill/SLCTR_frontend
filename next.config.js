@@ -9,6 +9,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'i.scdn.co',
       },
+      {
+        protocol: 'https',
+        hostname: 'thisis-images.spotifycdn.com',
+      },
     ],
   },
   async redirects() {
