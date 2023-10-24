@@ -27,3 +27,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 # DB sync
 
 - npx prisma db push
+
+# DB Prisma Studio interface
+
+- npx prisma studio
