@@ -24,10 +24,14 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-# DB sync
+# DB
 
+sync (after any changes made to schema)
 - npx prisma db push
 
-# DB Prisma Studio interface
-
+DB Prisma Studio interface (view db)
 - npx prisma studio
+
+update prisma client after every schema file change
+- npx prisma generate
+
