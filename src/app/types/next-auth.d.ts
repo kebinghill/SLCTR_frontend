@@ -8,6 +8,9 @@ declare module 'next-auth' {
   interface Session extends DefaultSession {
     accessToken?: string;
     error?: string;
+    user?: {
+      id?: string | null;
+    };
   }
   interface Account extends NextAuthAccount {
     expires_at: number;
