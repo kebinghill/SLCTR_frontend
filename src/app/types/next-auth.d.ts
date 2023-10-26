@@ -10,6 +10,9 @@ declare module 'next-auth' {
     error?: string;
     user?: {
       id?: string | null;
+      name?: string | null;
+      email?: string | null;
+      image?: string | null;
     };
   }
   interface Account extends NextAuthAccount {
