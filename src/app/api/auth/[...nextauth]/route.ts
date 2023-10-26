@@ -4,7 +4,7 @@ import SpotifyProvider from 'next-auth/providers/spotify';
 import axios from 'axios';
 
 const scopes =
-  'scope=user-read-email playlist-modify-public playlist-modify-private';
+  'scope=user-read-email playlist-modify-public playlist-modify-private playlist-read-private playlist-read-collaborative';
 
 const SPOTIFY_REFRESH_TOKEN_URL = 'https://accounts.spotify.com/api/token';
 
@@ -27,8 +27,6 @@ async function refreshAccessToken(token: JWT): Promise<JWT> {
         },
       }
     );
-
-    console.log(data);
 
     return {
       ...token,
