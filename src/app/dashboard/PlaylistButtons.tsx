@@ -1,6 +1,3 @@
-import { CgHeart, CgMenu } from 'react-icons/cg';
-import { FiMessageCircle } from 'react-icons/fi';
-import { AiOutlinePlus, AiOutlineMenu } from 'react-icons/ai';
 import Image from 'next/image';
 
 export default function PlaylistButtons() {

@@ -4,11 +4,11 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '../api/auth/[...nextauth]/route';
 import PlaylistCard from '../dashboard/PlaylistCard';
 
-export default async function PrivatePlaylists() {
+export default async function UserPlaylists() {
   const { items: privatePlaylists } = await getUsersPlaylists();
   const session = await getServerSession(authOptions);
   return (
-    <div className='flex flex-col item-center w-[100vw]'>
+    <div className='flex flex-col items-center w-[100vw]'>
       {privatePlaylists.map((playlist: any) => {
         const image = playlist.images[0].url;
         if (playlist.owner.id === session?.user?.id && playlist.public === true)

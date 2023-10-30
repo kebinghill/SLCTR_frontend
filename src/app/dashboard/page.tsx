@@ -5,6 +5,7 @@ import Header from './Header';
 import { redirect } from 'next/navigation';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '../api/auth/[...nextauth]/route';
+import MenuBar from '../components/MenuBar';
 
 export default async function Dashboard() {
   // const cookies = useCookies();
@@ -18,6 +19,7 @@ export default async function Dashboard() {
       <div className='bg-white'>
         <Header />
         <PlaylistCards></PlaylistCards>
+        <MenuBar />
       </div>
     );
   } else {
