@@ -1,5 +1,5 @@
-import PrivatePlaylists from './PrivatePlaylists';
-import Header from '../dashboard/Header';
+import PrivatePlaylists from './UserPlaylists';
+import ProfileHeader from './ProfileHeader';
 import SignOut from './Signout';
 import { authOptions } from '../api/auth/[...nextauth]/route';
 import { getServerSession } from 'next-auth';
@@ -12,8 +12,8 @@ export default async function Profile() {
     return redirect('/login');
   }
   return (
-    <div className='bg-white h-[100vh]'>
-      <Header />
+    <div className='bg-white'>
+      <ProfileHeader />
       <PrivatePlaylists />
       <SignOut />
     </div>
