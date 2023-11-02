@@ -51,3 +51,24 @@ export const getUsersPlaylists = async () => {
     throw new Error(`(getUsersPlaylists) error: ${error}`);
   }
 };
+
+export const getPlaylistTracks = async (href: string) => {
+  try {
+    const session = await getServerSession(authOptions);
+
+    if (session?.user) {
+      const response = await fetch(href, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${session.accessToken}`,
+        },
+      });
+
+      const tracklist = await response.json();
+      console.log(tracklist);
+      return tracklist;
+    }
+  } catch (error) {
+    throw new Error(`(getPlaylistTracks) error: ${error}`);
+  }
+};

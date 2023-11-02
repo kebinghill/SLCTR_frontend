@@ -14,7 +14,7 @@ export default async function Dashboard() {
 
   console.log('SESSION IN DASHBOARD PAGE', session);
 
-  // if (session && !session.error) {
+  if (session && !session.error) {
     return (
       <div className='bg-white'>
         <Header />
@@ -22,7 +22,7 @@ export default async function Dashboard() {
         <MenuBar />
       </div>
     );
-  // } else {
-  //   return redirect('/login');
-  // }
+  } else {
+    return redirect('/login');
+  }
 }
