@@ -5,10 +5,10 @@ import { redirect } from 'next/navigation';
 
 export default async function Login() {
   const session = await getServerSession(authOptions);
-  console.log('SESSION IN LOGIN PAGE', session);
-  if (session && !session.error) {
-    return redirect('/dashboard');
-  }
+  // console.log('SESSION IN LOGIN PAGE', session);
+  // if (session && !session.error) {
+  //   return redirect('/dashboard');
+  // }
   return (
     <>
       <div className='flex flex-col items-center bg-white h-screen w-screen'>

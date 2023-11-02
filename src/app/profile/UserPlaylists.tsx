@@ -1,5 +1,4 @@
 import { getUsersPlaylists } from '../api/spotify';
-import Image from 'next/image';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '../api/auth/[...nextauth]/route';
 import PlaylistCard from '../dashboard/PlaylistCard';
@@ -10,11 +9,9 @@ export default async function UserPlaylists() {
   return (
     <div className='flex flex-col items-center w-[100vw]'>
       {privatePlaylists.map((playlist: any) => {
-        const image = playlist.images[0].url;
+        const image = playlist.images[0]?.url;
         if (playlist.owner.id === session?.user?.id && playlist.public === true)
-          return (
-            <PlaylistCard key={playlist.id} image={playlist.images[0].url} />
-          );
+          return <PlaylistCard key={playlist.id} image={image} />;
       })}
     </div>
   );

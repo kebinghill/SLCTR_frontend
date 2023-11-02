@@ -10,7 +10,7 @@ export default async function PlaylistCards() {
     <div className='flex flex-col items-center w-[100vw]'>
       {usersPlaylists.map((playlist: any) => {
         return (
-          <PlaylistCard key={playlist.id} image={playlist.images[0].url} />
+          <PlaylistCard key={playlist.id} image={playlist.images[0]?.url} />
         );
       })}
     </div>
