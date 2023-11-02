@@ -6,6 +6,7 @@ import { ClientCookiesProvider } from './provider/ClientCookiesProvider';
 import { SessionProvider } from './provider/NextAuthProvider';
 import { getServerSession } from 'next-auth';
 import { authOptions } from './api/auth/[...nextauth]/route';
+import { NextUIProvider } from '@nextui-org/react';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -21,12 +22,14 @@ export default async function RootLayout({
 }) {
   const session = await getServerSession(authOptions);
   return (
-    <SessionProvider session={session}>
-      <ClientCookiesProvider value={cookies().getAll()}>
-        <html lang='en'>
-          <body className={inter.className}>{children}</body>
-        </html>
-      </ClientCookiesProvider>
-    </SessionProvider>
+    <NextUIProvider>
+      <SessionProvider session={session}>
+        <ClientCookiesProvider value={cookies().getAll()}>
+          <html lang='en'>
+            <body className={inter.className}>{children}</body>
+          </html>
+        </ClientCookiesProvider>
+      </SessionProvider>
+    </NextUIProvider>
   );
 }

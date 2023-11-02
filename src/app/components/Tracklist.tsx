@@ -13,7 +13,15 @@ export default async function Tracklist({
         const trackname = track.track.name;
         const artist = track.track.artists[0].name;
         const album = track.track.album.name;
-        console.log(trackname, artist, album);
+
+        console.log(track.track);
+        return (
+          <div key={track.track.id} className='text-black'>
+            {trackname}
+            {artist}
+            {album}
+          </div>
+        );
       })}
     </div>
   );
