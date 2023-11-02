@@ -4,9 +4,9 @@ import { Inter } from 'next/font/google';
 import { cookies } from 'next/headers';
 import { ClientCookiesProvider } from './provider/ClientCookiesProvider';
 import { SessionProvider } from './provider/NextAuthProvider';
+import { UIProvider } from './provider/NextUIProvider';
 import { getServerSession } from 'next-auth';
 import { authOptions } from './api/auth/[...nextauth]/route';
-import { NextUIProvider } from '@nextui-org/react';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,14 +22,14 @@ export default async function RootLayout({
 }) {
   const session = await getServerSession(authOptions);
   return (
-    <NextUIProvider>
-      <SessionProvider session={session}>
-        <ClientCookiesProvider value={cookies().getAll()}>
-          <html lang='en'>
-            <body className={inter.className}>{children}</body>
-          </html>
-        </ClientCookiesProvider>
-      </SessionProvider>
-    </NextUIProvider>
+    <SessionProvider session={session}>
+      <ClientCookiesProvider value={cookies().getAll()}>
+        <html lang='en'>
+          <body className={inter.className}>
+            <UIProvider>{children}</UIProvider>
+          </body>
+        </html>
+      </ClientCookiesProvider>
+    </SessionProvider>
   );
 }

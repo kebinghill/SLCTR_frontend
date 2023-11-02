@@ -1,28 +1,39 @@
-import { getPlaylistTracks } from '../api/spotify';
+'use client';
 
-export default async function Tracklist({
-  tracklistHref,
-}: {
-  tracklistHref: string;
-}) {
-  const { items: tracks } = await getPlaylistTracks(tracklistHref);
+import {
+  Table,
+  TableHeader,
+  TableColumn,
+  TableBody,
+  TableRow,
+  TableCell,
+} from '@nextui-org/table';
 
+export default function Tracklist({ tracks }: { tracks: any }) {
   return (
     <div>
-      {tracks.map((track: any) => {
-        const trackname = track.track.name;
-        const artist = track.track.artists[0].name;
-        const album = track.track.album.name;
+      <Table aria-label='tracklist table'>
+        <TableHeader>
+          <TableColumn>SONG</TableColumn>
+          <TableColumn>ARTIST</TableColumn>
+          <TableColumn>ALBUM</TableColumn>
+        </TableHeader>
+        <TableBody>
+          {tracks.map((track: any) => {
+            const trackname = track.track.name;
+            const artist = track.track.artists[0].name;
+            const album = track.track.album.name;
 
-        console.log(track.track);
-        return (
-          <div key={track.track.id} className='text-black'>
-            {trackname}
-            {artist}
-            {album}
-          </div>
-        );
-      })}
+            return (
+              <TableRow key={track.track.id} className='text-black'>
+                <TableCell>{trackname}</TableCell>
+                <TableCell>{artist}</TableCell>
+                <TableCell>{album}</TableCell>
+              </TableRow>
+            );
+          })}
+        </TableBody>
+      </Table>
     </div>
   );
 }
