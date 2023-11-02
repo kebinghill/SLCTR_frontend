@@ -44,7 +44,6 @@ export const getUsersPlaylists = async () => {
       );
 
       const userPlaylists = await response.json();
-      console.log(userPlaylists);
       return userPlaylists;
     }
   } catch (error) {
@@ -65,7 +64,6 @@ export const getPlaylistTracks = async (href: string) => {
       });
 
       const tracklist = await response.json();
-      console.log(tracklist);
       return tracklist;
     }
   } catch (error) {
