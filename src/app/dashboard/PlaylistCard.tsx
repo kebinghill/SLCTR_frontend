@@ -8,16 +8,14 @@ export default async function PlaylistCard({
   tracklistHref,
 }: {
   image: string;
-  tracklistHref?: string;
+  tracklistHref: string;
 }) {
-  const { items: tracks } = tracklistHref
-    ? await getPlaylistTracks(tracklistHref)
-    : null;
+  const { items: tracks } = await getPlaylistTracks(tracklistHref);
 
   return (
     <div className='flex flex-col justify-around min-w-[375px] min-h-[375px] bg-white mx-[30px] mb-[18px]'>
-      <Tracklist tracks={tracks} />
       <PlaylistImage image={image} />
+      <Tracklist tracks={tracks} />
       <PlaylistButtons />
     </div>
   );

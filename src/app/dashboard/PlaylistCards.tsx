@@ -9,8 +9,13 @@ export default async function PlaylistCards() {
   return (
     <div className='flex flex-col items-center w-[100vw]'>
       {usersPlaylists.map((playlist: any) => {
+        const tracklistHref = playlist.tracks.href;
         return (
-          <PlaylistCard key={playlist.id} image={playlist.images[0]?.url} />
+          <PlaylistCard
+            key={playlist.id}
+            image={playlist.images[0]?.url}
+            tracklistHref={tracklistHref}
+          />
         );
       })}
     </div>
