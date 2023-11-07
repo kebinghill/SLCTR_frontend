@@ -8,17 +8,15 @@ import { useSession } from 'next-auth/react';
 export default function UserInfo() {
   const session = useSession();
 
-  console.log(session);
-
   return (
-    <div className='flex pl-[6px] pt-[6px]'>
+    <div className='flex justify-center pl-[6px] pt-[6px] max-w-[600px]'>
       {/* <ProfilePicture /> */}
       <Image
         src={session.data?.user?.image || '/public/no_image.png'}
         alt='No Image Found'
         height={100}
         width={100}
-        className='w-[50%] h-[50%]'
+        className='w-[50%] h-[50%] max-w-[100px] max-h-[100px]'
       />
       <div className='pl-[15px]'>
         <p className='text-black font-bold text-[20px] font-myriad tracking-wide'>

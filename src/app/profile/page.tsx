@@ -14,7 +14,7 @@ export default async function Profile() {
     return redirect('/login');
   }
   return (
-    <div className='bg-white'>
+    <div className='flex flex-col items-center bg-white'>
       <ProfileHeader />
       <UserInfo />
       <UserPlaylists />
