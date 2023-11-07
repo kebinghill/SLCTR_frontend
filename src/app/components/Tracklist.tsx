@@ -17,12 +17,12 @@ export default function Tracklist({ tracks }: { tracks: any }) {
 
   if (showTracks) {
     return (
-      <div className='border-2 '>
+      <div className='flex flex-col justify-around  max-w-[600px]'>
         <PlaylistButtons
           setShowTracks={setShowTracks}
           showTracks={showTracks}
         />
-        <Table aria-label='tracklist table' className='border w-[300px]'>
+        <Table aria-label='tracklist table' isStriped>
           <TableHeader>
             <TableColumn>SONG</TableColumn>
             <TableColumn>ARTIST</TableColumn>
@@ -48,7 +48,7 @@ export default function Tracklist({ tracks }: { tracks: any }) {
     );
   } else {
     return (
-      <div>
+      <div className='flex justify-end'>
         <PlaylistButtons
           setShowTracks={setShowTracks}
           showTracks={showTracks}
