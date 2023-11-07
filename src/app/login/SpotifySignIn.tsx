@@ -9,8 +9,6 @@ export default function SpotifySignIn() {
   // const token = cookieStore.get('token');
   const { data: session } = useSession();
 
-  console.log(session);
-
   return (
     <>
       <button

@@ -12,8 +12,6 @@ export default async function Dashboard() {
   // const { data: session } = useSession();
   const session = await getServerSession(authOptions);
 
-  console.log('SESSION IN DASHBOARD PAGE', session);
-
   if (session && !session.error) {
     return (
       <div className='bg-white'>

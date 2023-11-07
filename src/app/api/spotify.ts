@@ -43,11 +43,21 @@ export const getUsersPlaylists = async () => {
         }
       );
 
+      if (response.status !== 200) {
+        throw new Error(
+          `${response.status}, ${
+            response.statusText
+          } -- need to wait for ${response.headers.get(
+            'retry-after'
+          )} seconds before retrying a request.`
+        );
+      }
+
       const userPlaylists = await response.json();
       return userPlaylists;
     }
   } catch (error) {
-    throw new Error(`(getUsersPlaylists) error: ${error}`);
+    throw new Error(`(getUsersPlaylists) ${error}`);
   }
 };
 

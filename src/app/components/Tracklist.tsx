@@ -1,6 +1,7 @@
 // Need to use client here because error is thrown, tracking bug here: https://github.com/nextui-org/nextui/issues/1403
 'use client';
 
+import { useState } from 'react';
 import {
   Table,
   TableHeader,
@@ -8,33 +9,51 @@ import {
   TableBody,
   TableRow,
   TableCell,
-} from '@nextui-org/table';
+} from './table';
+import PlaylistButtons from '../dashboard/PlaylistButtons';
 
 export default function Tracklist({ tracks }: { tracks: any }) {
-  return (
-    <div>
-      <Table aria-label='tracklist table'>
-        <TableHeader>
-          <TableColumn>SONG</TableColumn>
-          <TableColumn>ARTIST</TableColumn>
-          <TableColumn>ALBUM</TableColumn>
-        </TableHeader>
-        <TableBody>
-          {tracks.map((track: any) => {
-            const trackname = track.track.name;
-            const artist = track.track.artists[0].name;
-            const album = track.track.album.name;
+  const [showTracks, setShowTracks] = useState(false);
 
-            return (
-              <TableRow key={track.track.id} className='text-black'>
-                <TableCell>{trackname}</TableCell>
-                <TableCell>{artist}</TableCell>
-                <TableCell>{album}</TableCell>
-              </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
-    </div>
-  );
+  if (showTracks) {
+    return (
+      <div className='border-2 '>
+        <PlaylistButtons
+          setShowTracks={setShowTracks}
+          showTracks={showTracks}
+        />
+        <Table aria-label='tracklist table' className='border w-[300px]'>
+          <TableHeader>
+            <TableColumn>SONG</TableColumn>
+            <TableColumn>ARTIST</TableColumn>
+            <TableColumn>ALBUM</TableColumn>
+          </TableHeader>
+          <TableBody>
+            {tracks.map((track: any) => {
+              const trackname = track.track.name;
+              const artist = track.track.artists[0].name;
+              const album = track.track.album.name;
+
+              return (
+                <TableRow key={track.track.id} className='text-black'>
+                  <TableCell>{trackname}</TableCell>
+                  <TableCell>{artist}</TableCell>
+                  <TableCell>{album}</TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <PlaylistButtons
+          setShowTracks={setShowTracks}
+          showTracks={showTracks}
+        />
+      </div>
+    );
+  }
 }
