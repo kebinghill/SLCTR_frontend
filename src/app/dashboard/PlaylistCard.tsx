@@ -2,6 +2,7 @@ import PlaylistImage from './PlaylistImage';
 import Tracklist from '../components/Tracklist';
 import { getPlaylistTracks } from '../api/spotify';
 import Carousel from './Carousel';
+import PlaylistButtons from './PlaylistButtons';
 
 export default async function PlaylistCard({
   image,
@@ -18,6 +19,8 @@ export default async function PlaylistCard({
         <PlaylistImage image={image} />
         <Tracklist tracks={null} />
       </Carousel>
+      <PlaylistButtons
+        />
     </div>
   );
 }

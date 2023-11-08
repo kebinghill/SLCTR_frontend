@@ -48,11 +48,7 @@ export default function Tracklist({ tracks }: { tracks: any }) {
     );
   } else {
     return (
-      <div className='flex justify-end'>
-        <PlaylistButtons
-          setShowTracks={setShowTracks}
-          showTracks={showTracks}
-        />
+      <div className='flex justify-end overflow-auto'>
         <Table aria-label='tracklist table' isStriped>
           <TableHeader>
             <TableColumn>SONG</TableColumn>
@@ -60,7 +56,77 @@ export default function Tracklist({ tracks }: { tracks: any }) {
             <TableColumn>ALBUM</TableColumn>
           </TableHeader>
           <TableBody>
-            <TableRow>
+            <TableRow className='text-black'>
+              <TableCell>TEST ONE</TableCell>
+              <TableCell>EXAMPLE</TableCell>
+              <TableCell>EXAMPLE</TableCell>
+            </TableRow>
+            <TableRow className='text-black'>
+              <TableCell>TEST ONE</TableCell>
+              <TableCell>EXAMPLE</TableCell>
+              <TableCell>EXAMPLE</TableCell>
+            </TableRow>
+            <TableRow className='text-black'>
+              <TableCell>TEST ONE</TableCell>
+              <TableCell>EXAMPLE</TableCell>
+              <TableCell>EXAMPLE</TableCell>
+            </TableRow>
+            <TableRow className='text-black'>
+              <TableCell>TEST ONE</TableCell>
+              <TableCell>EXAMPLE</TableCell>
+              <TableCell>EXAMPLE</TableCell>
+            </TableRow>
+            <TableRow className='text-black'>
+              <TableCell>TEST ONE</TableCell>
+              <TableCell>EXAMPLE</TableCell>
+              <TableCell>EXAMPLE</TableCell>
+            </TableRow>
+            <TableRow className='text-black'>
+              <TableCell>TEST ONE</TableCell>
+              <TableCell>EXAMPLE</TableCell>
+              <TableCell>EXAMPLE</TableCell>
+            </TableRow>
+            <TableRow className='text-black'>
+              <TableCell>TEST ONE</TableCell>
+              <TableCell>EXAMPLE</TableCell>
+              <TableCell>EXAMPLE</TableCell>
+            </TableRow>
+            <TableRow className='text-black'>
+              <TableCell>TEST ONE</TableCell>
+              <TableCell>EXAMPLE</TableCell>
+              <TableCell>EXAMPLE</TableCell>
+            </TableRow>
+            <TableRow className='text-black'>
+              <TableCell>TEST ONE</TableCell>
+              <TableCell>EXAMPLE</TableCell>
+              <TableCell>EXAMPLE</TableCell>
+            </TableRow>
+            <TableRow className='text-black'>
+              <TableCell>TEST ONE</TableCell>
+              <TableCell>EXAMPLE</TableCell>
+              <TableCell>EXAMPLE</TableCell>
+            </TableRow>
+            <TableRow className='text-black'>
+              <TableCell>TEST ONE</TableCell>
+              <TableCell>EXAMPLE</TableCell>
+              <TableCell>EXAMPLE</TableCell>
+            </TableRow>
+            <TableRow className='text-black'>
+              <TableCell>TEST ONE</TableCell>
+              <TableCell>EXAMPLE</TableCell>
+              <TableCell>EXAMPLE</TableCell>
+            </TableRow>
+            <TableRow className='text-black'>
+              <TableCell>TEST ONE</TableCell>
+              <TableCell>EXAMPLE</TableCell>
+              <TableCell>EXAMPLE</TableCell>
+            </TableRow>
+            <TableRow className='text-black'>
+              <TableCell>TEST ONE</TableCell>
+              <TableCell>EXAMPLE</TableCell>
+              <TableCell>EXAMPLE</TableCell>
+            </TableRow>
+            <TableRow className='text-black'>
               <TableCell>TEST ONE</TableCell>
               <TableCell>EXAMPLE</TableCell>
               <TableCell>EXAMPLE</TableCell>
