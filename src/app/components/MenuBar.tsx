@@ -12,7 +12,7 @@ export default function MenuBar() {
       <Link href='/profile'>
         <div className='w-[60px] h-[60px] border border-black rounded-full'>
           <Image
-            src={session.data?.user?.image || '/public/no_image.png'}
+            src={session.data?.user?.image || '/no_image.png'}
             alt='No Image Found'
             height={60}
             width={60}

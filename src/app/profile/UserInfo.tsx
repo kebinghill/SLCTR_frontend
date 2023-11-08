@@ -12,7 +12,7 @@ export default function UserInfo() {
     <div className='flex justify-center pl-[6px] pt-[6px] max-w-[600px]'>
       {/* <ProfilePicture /> */}
       <Image
-        src={session.data?.user?.image || '/public/no_image.png'}
+        src={session.data?.user?.image || '/no_image.png'}
         alt='No Image Found'
         height={100}
         width={100}
