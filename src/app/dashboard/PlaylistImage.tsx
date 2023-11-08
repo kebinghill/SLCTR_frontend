@@ -1,15 +1,10 @@
 'use client';
 
 import Image from 'next/image';
-import { useSwipeable } from 'react-swipeable';
 
 export default function PlaylistImage({ image }: { image: string }) {
-  const handlers = useSwipeable({
-    onSwiped: (eventData) => console.log('User Swiped!', eventData),
-    trackMouse: true,
-  });
   return (
-    <div {...handlers}>
+    <div>
       <Image
         src={image ? image : '/no_image.png'}
         width={600}

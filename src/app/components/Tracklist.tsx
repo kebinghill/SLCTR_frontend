@@ -53,6 +53,20 @@ export default function Tracklist({ tracks }: { tracks: any }) {
           setShowTracks={setShowTracks}
           showTracks={showTracks}
         />
+        <Table aria-label='tracklist table' isStriped>
+          <TableHeader>
+            <TableColumn>SONG</TableColumn>
+            <TableColumn>ARTIST</TableColumn>
+            <TableColumn>ALBUM</TableColumn>
+          </TableHeader>
+          <TableBody>
+            <TableRow>
+              <TableCell>TEST ONE</TableCell>
+              <TableCell>EXAMPLE</TableCell>
+              <TableCell>EXAMPLE</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
       </div>
     );
   }
