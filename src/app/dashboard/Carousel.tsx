@@ -1,19 +1,14 @@
 'use client';
 
-import Image from 'next/image';
-import React, { FunctionComponent, ReactNode, useState } from 'react';
+import { useState } from 'react';
 import { useSwipeable } from 'react-swipeable';
-import {
-  Carousel as MaterialCarousel,
-  IconButton,
-} from '@material-tailwind/react';
 
 const Carousel = ({ children: slides }: { children: any }) => {
   const [curr, setCurr] = useState(0);
 
   const handlers = useSwipeable({
-    onSwipedLeft: (eventData) => next(),
-    onSwipedRight: (eventData) => prev(),
+    onSwipedLeft: () => next(),
+    onSwipedRight: () => prev(),
     onTap: ({ event }) => console.log(event),
     swipeDuration: 500,
     preventScrollOnSwipe: true,
