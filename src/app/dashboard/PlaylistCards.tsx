@@ -7,12 +7,15 @@ export default async function PlaylistCards() {
   return (
     <div className='flex flex-col items-center w-[100vw]'>
       {featuredPlaylists.map((playlist: any) => {
+        const playlistId = playlist.id;
+        const image = playlist.images[0]?.url;
         const tracklistHref = playlist.tracks.href;
         return (
           <PlaylistCard
             key={playlist.id}
-            image={playlist.images[0]?.url}
+            image={image}
             tracklistHref={tracklistHref}
+            playlistId={playlistId}
           />
         );
       })}

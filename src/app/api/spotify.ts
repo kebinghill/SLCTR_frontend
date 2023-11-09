@@ -90,3 +90,26 @@ export const getPlaylistTracks = async (href: string) => {
     throw new Error(`(getPlaylistTracks) ${error}`);
   }
 };
+
+export const checkIfFollowerOfPlaylist = async (playlistId: string) => {
+  try {
+    const session = await getServerSession(authOptions);
+
+    if (session?.user) {
+      const response = await fetch(
+        `https://api.spotify.com/v1/playlists/${playlistId}/followers/contains?ids=${session.user.id}`,
+        {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${session.accessToken}`,
+          },
+        }
+      );
+
+      const followerArray = await response.json();
+      return followerArray[0];
+    }
+  } catch (error) {
+    throw new Error(`(checkIfFollowerOfPlaylist) ${error}`);
+  }
+};

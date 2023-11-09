@@ -9,6 +9,7 @@ export default async function UserPlaylists() {
   return (
     <div className='flex flex-col items-center w-[100vw]'>
       {privatePlaylists.map((playlist: any) => {
+        const id = playlist.id;
         const image = playlist.images[0]?.url;
         const tracklistHref = playlist.tracks.href;
         if (playlist.owner.id === session?.user?.id && playlist.public === true)
@@ -17,6 +18,7 @@ export default async function UserPlaylists() {
               key={playlist.id}
               image={image}
               tracklistHref={tracklistHref}
+              playlistId={id}
             />
           );
       })}
