@@ -19,8 +19,7 @@ export default async function PlaylistCard({
         <PlaylistImage image={image} />
         <Tracklist tracks={null} />
       </Carousel>
-      <PlaylistButtons
-        />
+      <PlaylistButtons />
     </div>
   );
 }

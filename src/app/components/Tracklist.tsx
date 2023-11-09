@@ -48,7 +48,7 @@ export default function Tracklist({ tracks }: { tracks: any }) {
     );
   } else {
     return (
-      <div className='flex justify-end overflow-auto'>
+      <div className='min-w-[500px] overflow'>
         <Table aria-label='tracklist table' isStriped>
           <TableHeader>
             <TableColumn>SONG</TableColumn>

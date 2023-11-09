@@ -8,38 +8,36 @@ import {
   IconButton,
 } from '@material-tailwind/react';
 
-const Carousel = ({ children }: { children: any }) => {
-  const [showImage, setShowImage] = useState(true);
+const Carousel = ({ children: slides }: { children: any }) => {
+  const [curr, setCurr] = useState(0);
+
   const handlers = useSwipeable({
-    onSwipedLeft: (eventData) => (
-      <path
-        strokeLinecap='round'
-        strokeLinejoin='round'
-        d='M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18'
-      />
-    ),
-    onSwipedRight: (eventData) => console.log(eventData),
+    onSwipedLeft: (eventData) => next(),
+    onSwipedRight: (eventData) => prev(),
     onTap: ({ event }) => console.log(event),
     swipeDuration: 500,
     preventScrollOnSwipe: true,
     trackMouse: true,
   });
 
-  const handleChange = ({ target }) => {
-    console.log(target);
-  };
+  const prev = () =>
+    setCurr((curr) => (curr === slides.length - 1 ? curr - 1 : curr));
+  const next = () => setCurr((curr) => (curr === 0 ? curr + 1 : curr));
 
   return (
-    <MaterialCarousel
-      onChange={handleChange}
+    <div
+      className={`max-w-[500px] max-h-[500px] ${
+        curr === 0 && 'overflow-y-clip'
+      } overflow-x-hidden`}
       {...handlers}
-      className={`border-2 max-w-[500px] max-h-[500px] rounded-[14px] ${
-        showImage && 'overflow-x-clip'
-      }`}
     >
-      {children}
-    </MaterialCarousel>
+      <div
+        className='flex transition-transform ease-out duration-500'
+        style={{ transform: `translateX(-${curr * 100}%)` }}
+      >
+        {slides}
+      </div>
+    </div>
   );
 };
-
 export default Carousel;
