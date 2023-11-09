@@ -22,7 +22,7 @@ export default async function PlaylistCard({
         <PlaylistImage image={image} />
         <Tracklist tracks={tracks} />
       </Carousel>
-      <PlaylistButtons follower={follower} />
+      <PlaylistButtons follower={follower} playlistId={playlistId} />
     </div>
   );
 }

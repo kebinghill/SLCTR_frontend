@@ -106,10 +106,62 @@ export const checkIfFollowerOfPlaylist = async (playlistId: string) => {
         }
       );
 
+      if (response.status !== 200) {
+        throw new Error(
+          `${response.status}, ${
+            response.statusText
+          } -- need to wait for ${response.headers.get(
+            'retry-after'
+          )} seconds before retrying a request.`
+        );
+      }
+
       const followerArray = await response.json();
       return followerArray[0];
     }
   } catch (error) {
     throw new Error(`(checkIfFollowerOfPlaylist) ${error}`);
+  }
+};
+
+export const followPlaylist = async (playlistId: string) => {
+  try {
+    const session = await getServerSession(authOptions);
+
+    if (session?.user) {
+      await fetch(
+        `https://api.spotify.com/v1/playlists/${playlistId}/followers`,
+        {
+          method: 'PUT',
+          headers: {
+            Authorization: `Bearer ${session.accessToken}`,
+          },
+        }
+      );
+      return;
+    }
+  } catch (error) {
+    throw new Error(`(followPlaylist) ${error}`);
+  }
+};
+
+export const unfollowPlaylist = async (playlistId: string) => {
+  try {
+    const session = await getServerSession(authOptions);
+
+    if (session?.user) {
+      await fetch(
+        `https://api.spotify.com/v1/playlists/${playlistId}/followers`,
+        {
+          method: 'DELETE',
+          headers: {
+            Authorization: `Bearer ${session.accessToken}`,
+          },
+        }
+      );
+      return;
+    }
+  } catch (error) {
+    throw new Error(`(unfollowPlaylist) ${error}`);
   }
 };

@@ -1,7 +1,6 @@
 // Need to use client here because error is thrown, tracking bug here: https://github.com/nextui-org/nextui/issues/1403
 'use client';
 
-import { useState } from 'react';
 import {
   Table,
   TableHeader,
