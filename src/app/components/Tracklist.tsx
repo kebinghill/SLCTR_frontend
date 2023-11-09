@@ -10,18 +10,14 @@ import {
   TableRow,
   TableCell,
 } from './table';
-import PlaylistButtons from '../dashboard/PlaylistButtons';
 
 export default function Tracklist({ tracks }: { tracks: any }) {
+  // remove once api limit cleared
   const [showTracks, setShowTracks] = useState(false);
 
   if (showTracks) {
     return (
       <div className='flex flex-col justify-around  max-w-[600px]'>
-        <PlaylistButtons
-          setShowTracks={setShowTracks}
-          showTracks={showTracks}
-        />
         <Table aria-label='tracklist table' isStriped>
           <TableHeader>
             <TableColumn>SONG</TableColumn>
