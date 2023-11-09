@@ -73,10 +73,20 @@ export const getPlaylistTracks = async (href: string) => {
         },
       });
 
+      if (response.status !== 200) {
+        throw new Error(
+          `${response.status}, ${
+            response.statusText
+          } -- need to wait for ${response.headers.get(
+            'retry-after'
+          )} seconds before retrying a request.`
+        );
+      }
+
       const tracklist = await response.json();
       return tracklist;
     }
   } catch (error) {
-    throw new Error(`(getPlaylistTracks) error: ${error}`);
+    throw new Error(`(getPlaylistTracks) ${error}`);
   }
 };
