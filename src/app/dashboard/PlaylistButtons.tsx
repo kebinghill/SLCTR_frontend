@@ -2,28 +2,9 @@
 
 import Image from 'next/image';
 
-export default function PlaylistButtons({
-  setShowTracks,
-  showTracks,
-}: {
-  setShowTracks: any;
-  showTracks: boolean;
-}) {
+export default function PlaylistButtons() {
   return (
     <div className='flex justify-end'>
-      <button
-        onClick={() => {
-          setShowTracks(!showTracks);
-        }}
-      >
-        <Image
-          src={'/icons/tracklist_button.png'}
-          height={40}
-          width={40}
-          alt='Tracklist Button'
-          className='brightness-0'
-        />
-      </button>
       <Image
         src={'/icons/love_button.png'}
         width={40}
@@ -45,10 +26,6 @@ export default function PlaylistButtons({
         alt='Add Button'
         className='brightness-0'
       />
-      {/* <CgMenu className='w-[50px] h-full text-black' />
-      <CgHeart className='w-[50px] h-full text-black' />
-      <FiMessageCircle className='w-[50px] h-full text-black' />
-      <AiOutlinePlus className='w-[50px] h-full text-black' /> */}
     </div>
   );
 }
