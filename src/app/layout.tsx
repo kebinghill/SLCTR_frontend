@@ -7,6 +7,7 @@ import { SessionProvider } from './provider/NextAuthProvider';
 import { UIProvider } from './provider/NextUIProvider';
 import { getServerSession } from 'next-auth';
 import { authOptions } from './api/auth/[...nextauth]/route';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -27,6 +28,7 @@ export default async function RootLayout({
         <html lang='en'>
           <body className={inter.className}>
             <UIProvider>{children}</UIProvider>
+            <SpeedInsights />
           </body>
         </html>
       </ClientCookiesProvider>
