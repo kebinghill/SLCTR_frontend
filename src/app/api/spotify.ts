@@ -9,7 +9,7 @@ export const getFeaturedPlaylists = async () => {
 
     if (session) {
       const response = await fetch(
-        'https://api.spotify.com/v1/browse/featured-playlists?limit=5',
+        'https://api.spotify.com/v1/browse/featured-playlists?limit=1',
         {
           method: 'GET',
           headers: {
