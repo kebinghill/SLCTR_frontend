@@ -12,14 +12,21 @@ export default async function UserPlaylists() {
         const id = playlist.id;
         const image = playlist.images[0]?.url;
         const tracklistHref = playlist.tracks.href;
-        if (playlist.owner.id === session?.user?.id && playlist.public === true)
+        const playlistName = playlist.name;
+        if (
+          playlist.owner.id === session?.user?.id &&
+          playlistName !== 'My Shazam Tracks'
+        )
           return (
-            <PlaylistCard
-              key={playlist.id}
-              image={image}
-              tracklistHref={tracklistHref}
-              playlistId={id}
-            />
+            <div>
+              <h1 className='text-black'>{playlistName}</h1>
+              <PlaylistCard
+                key={playlist.id}
+                image={image}
+                tracklistHref={tracklistHref}
+                playlistId={id}
+              />
+            </div>
           );
       })}
     </div>

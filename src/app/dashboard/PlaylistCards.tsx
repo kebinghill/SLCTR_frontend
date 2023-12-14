@@ -1,6 +1,8 @@
 import PlaylistCard from './PlaylistCard';
 import { getFeaturedPlaylists } from '../api/spotify';
 
+let nullCounter = 0;
+
 export default async function PlaylistCards() {
   const featuredPlaylists = await getFeaturedPlaylists();
 
@@ -12,7 +14,7 @@ export default async function PlaylistCards() {
         const tracklistHref = playlist.tracks.href;
         return (
           <PlaylistCard
-            key={playlist.id}
+            key={playlist.id ? playlist.id : nullCounter++}
             image={image}
             tracklistHref={tracklistHref}
             playlistId={playlistId}

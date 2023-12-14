@@ -33,15 +33,12 @@ export const getUsersPlaylists = async () => {
     const session = await getServerSession(authOptions);
 
     if (session?.user) {
-      const response = await fetch(
-        `https://api.spotify.com/v1/users/${session.user.id}/playlists`,
-        {
-          method: 'GET',
-          headers: {
-            Authorization: `Bearer ${session.accessToken}`,
-          },
-        }
-      );
+      const response = await fetch('https://api.spotify.com/v1/me/playlists', {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${session.accessToken}`,
+        },
+      });
 
       if (response.status !== 200) {
         throw new Error(
@@ -54,6 +51,7 @@ export const getUsersPlaylists = async () => {
       }
 
       const userPlaylists = await response.json();
+      console.log(userPlaylists);
       return userPlaylists;
     }
   } catch (error) {
